@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {InputInterface} from "../interfaces/input-interface";
+import {InputInterface} from "../../interfaces/input-interface";
 
 
 const Input: FC<InputInterface> = ({value, setValue, name, type}) => {

@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {NavLink} from "react-router-dom";
-import {NavbarInterface} from "./interfaces/navbar-interface";
+import {NavbarInterface} from "../interfaces/navbar-interface";
 
 
 const Navbar:FC<NavbarInterface> = ({authorize}) => {
@@ -14,6 +14,7 @@ const Navbar:FC<NavbarInterface> = ({authorize}) => {
       <nav>
         <ul>
           <li><NavLink to="/">Главная</NavLink></li>
+          <li><NavLink to="/users">Users</NavLink></li>
           <li><NavLink to="/desks">Desks</NavLink></li>
           <li><NavLink to="/desks-list">DesksList</NavLink></li>
           <li><NavLink to="/cards">Cards</NavLink></li>

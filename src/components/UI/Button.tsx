@@ -1,5 +1,5 @@
 import React, {FC, FormEvent} from 'react';
-import {ButtonInterface} from "../interfaces/button-interface";
+import {ButtonInterface} from "../../interfaces/button-interface";
 
 
 const Button: FC<ButtonInterface> = ({onClick, name}) => {

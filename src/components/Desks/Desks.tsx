@@ -4,8 +4,8 @@ import axios, {AxiosResponse} from "axios";
 import {desksUrl} from "../../url-constants";
 import ModalWindow from "../ModalWindow";
 import {useParams} from "react-router-dom";
-import {BaseInterface} from "../interfaces/base-interface";
-import {DeskModel} from "../models/desk-model";
+import {BaseInterface} from "../../interfaces/base-interface";
+import {DeskModel} from "../../models/desk-model";
 import List from "../List";
 
 

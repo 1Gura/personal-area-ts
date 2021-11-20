@@ -2,9 +2,9 @@ import React, {ChangeEvent, FC, FormEvent, InputHTMLAttributes, useEffect, useSt
 import {NavLink, useParams} from "react-router-dom";
 import axios, {AxiosResponse} from "axios";
 import {desksUrl} from "../url-constants";
-import {BaseInterface} from "./interfaces/base-interface";
-import {DeskModel} from "./models/desk-model";
-import {Desk} from "./interfaces/Desk";
+import {BaseInterface} from "../interfaces/base-interface";
+import {DeskModel} from "../models/desk-model";
+import {Desk} from "../interfaces/Desk";
 
 
 const ModalWindow: FC<BaseInterface> = ({config}) => {

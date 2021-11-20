@@ -2,8 +2,8 @@ import React, {FC, FormEvent, useState} from 'react';
 import Input from "./UI/Input";
 import Button from "./UI/Button";
 import axios from "axios";
-import {AuthInterface} from "./interfaces/auth-interface";
-import {Log} from "./interfaces/log";
+import {AuthInterface} from "../interfaces/auth-interface";
+import {Log} from "../interfaces/log";
 
 const Auth: FC<AuthInterface> = ({selectToken}) => {
   const [value, setValue] = useState<Log>({email: 'gura@gmail.com', password: 'ilya123'});

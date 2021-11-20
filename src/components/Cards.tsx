@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import {CardPropsInterface, CardVariant} from "./interfaces/CardPropsInterface";
+import {CardPropsInterface, CardVariant} from "../interfaces/CardPropsInterface";
 
 const Cards: FC<CardPropsInterface> = ({width, height, variant, onClick}) => {
   const [state, setState] = useState(0);

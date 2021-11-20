@@ -9,7 +9,10 @@ import Tasks from "./components/Tasks";
 import Auth from "./components/Auth";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {CardVariant} from "./components/interfaces/CardPropsInterface";
+import {CardVariant} from "./interfaces/CardPropsInterface";
+import {Provider} from "react-redux";
+import {store} from "./store";
+import UserList from "./components/UserList/UserList";
 
 function App() {
   const [apiToken, setToken] = useState('');
@@ -55,24 +58,27 @@ function App() {
   }, [apiToken])
 
   return (
-      <BrowserRouter>
-        <div className="app">
-          <Navbar authorize={authorize}/>
-          <div className='container'>
-            <Routes>
-              <Route path="/" element={<Main/>}/>
-              <Route path="/desks" element={<Desks config={config}/>}/>
-              <Route path='/desks/:id' element={<Desks config={config}/>}/>
-              <Route path="/desks-list" element={<DesksList/>}/>
-              <Route path="/cards" element={
-                <Cards variant={CardVariant.primary} width={'300px'} height={'200px'} onClick={test}/>
-              }/>
-              <Route path="/tasks" element={<Tasks/>}/>
-              <Route path="/auth" element={<Auth selectToken={selectToken}/>}/>
-            </Routes>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="app">
+            <Navbar authorize={authorize}/>
+            <div className='container'>
+              <Routes>
+                <Route path="/" element={<Main/>}/>
+                <Route path="/users" element={<UserList config={config}/>}/>
+                <Route path="/desks" element={<Desks config={config}/>}/>
+                <Route path='/desks/:id' element={<Desks config={config}/>}/>
+                <Route path="/desks-list" element={<DesksList/>}/>
+                <Route path="/cards" element={
+                  <Cards variant={CardVariant.primary} width={'300px'} height={'200px'} onClick={test}/>
+                }/>
+                <Route path="/tasks" element={<Tasks/>}/>
+                <Route path="/auth" element={<Auth selectToken={selectToken}/>}/>
+              </Routes>
+            </div>
           </div>
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </Provider>
   );
 }
 

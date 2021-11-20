@@ -2,7 +2,7 @@ import React, {FC, FormEventHandler, useState} from 'react';
 import axios, {AxiosResponse} from "axios";
 import {desksUrl} from "../../url-constants";
 import {NavLink} from "react-router-dom";
-import {Desk} from "../interfaces/Desk";
+import {Desk} from "../../interfaces/Desk";
 
 const Item: FC<Desk> = ({config, getDesks, desk, deleteDesk}) => {
   const {id, name} = desk;
