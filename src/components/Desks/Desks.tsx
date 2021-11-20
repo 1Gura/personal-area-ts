@@ -5,6 +5,7 @@ import {desksUrl} from "../../url-constants";
 import ModalWindow from "../ModalWindow";
 import {useParams} from "react-router-dom";
 import {BaseInterface} from "../interfaces/base-interface";
+import {DeskModel} from "../models/desk-model";
 
 
 const Desks: FC<BaseInterface> = ({config}) => {
@@ -16,14 +17,14 @@ const Desks: FC<BaseInterface> = ({config}) => {
       setShowModal(false);
     }
   }, [params]);
-  let [desks, setDesks] = useState([]);
+  let [desks, setDesks] = useState<DeskModel[]>([]);
   const [modalDesk, setModalDesk] = useState({});
   let [name, setName] = useState('');
   const [showModal, setShowModal] = useState(false);
 
-  const getDesks = async () => {
-    axios.get(desksUrl, config).then(res => {
-      setDesks(res.data);
+  const getDesks = async (): Promise<void> => {
+    axios.get(desksUrl, config).then((res: AxiosResponse<DeskModel[]>) => {
+      return setDesks(res.data);
     }).catch(e => {
       console.log(e.response.status);
     })

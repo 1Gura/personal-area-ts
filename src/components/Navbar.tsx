@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {NavLink} from "react-router-dom";
+import {NavbarInterface} from "./interfaces/navbar-interface";
 
-// @ts-ignore
-function Navbar({token}) {
+
+const Navbar:FC<NavbarInterface> = ({authorize}) => {
   return (
     <header>
       {
-        token ?
+        authorize ?
           <div>Вы авторизованы</div>
           : ''
       }

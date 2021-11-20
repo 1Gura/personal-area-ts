@@ -62,7 +62,7 @@ function App() {
   return (
       <BrowserRouter>
         <div className="app">
-          <Navbar token={apiToken}/>
+          <Navbar authorize={authorize}/>
           <div className='container'>
             <Routes>
               <Route path="/" element={<Main/>}/>
@@ -73,7 +73,7 @@ function App() {
                 <Cards variant={CardVariant.primary} width={'300px'} height={'200px'} onClick={test}/>
               }/>
               <Route path="/tasks" element={<Tasks/>}/>
-              <Route path="/auth" element={<Auth token={apiToken} selectToken={selectToken}/>}/>
+              <Route path="/auth" element={<Auth selectToken={selectToken}/>}/>
             </Routes>
           </div>
         </div>

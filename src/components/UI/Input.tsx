@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {InputInterface} from "../interfaces/input-interface";
 
-// @ts-ignore
-const Input = ({value, setValue, name, type}) => {
+
+const Input: FC<InputInterface> = ({value, setValue, name, type}) => {
   return (
-    <div>
-      <input
-        value={value[name]}
-        onChange={(e) => {
-          setValue({
-            ...value, [name]: e.target.value
-          })
-        }}
-        type={type}/>
-    </div>
+      <div>
+        <input
+            //@ts-ignore
+            value={value[name]}
+            onChange={(e) => {
+              setValue({
+                ...value, [name]: e.target.value
+              })
+            }}
+            type={type}/>
+      </div>
   );
 };
 

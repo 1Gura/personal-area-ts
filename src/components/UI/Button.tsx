@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {ButtonInterface} from "../interfaces/button-interface";
 
-// @ts-ignore
-const Button = ({onClick, name}) => {
+
+const Button: FC<ButtonInterface> = ({onClick, name}) => {
   return (
-    <div>
-      <button
-      onClick={(e) => {onClick(e)}}
-      >{name}</button>
-    </div>
+      <div>
+        <button
+            onClick={(e:any) => {
+              onClick(e)
+            }}
+        >{name}</button>
+      </div>
   );
 };
 
