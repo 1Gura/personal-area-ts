@@ -36,12 +36,8 @@ function App() {
   }
 
   const checkedTicket = () => {
-    const token = localStorage.getItem('apiToken');
     axios.get('http://127.0.0.1:8000/api/auth/user-profile', config).then(() => {
           setAuthorize(true);
-          if (token && token !== 'null') {
-            selectToken(token);
-          }
         }
     ).catch(e => {
       if (e && e.response && e.response.status === 401) {
@@ -57,7 +53,7 @@ function App() {
 
   useEffect(() => {
     checkedTicket();
-  }, [apiToken, checkedTicket])
+  }, [apiToken])
 
   return (
       <BrowserRouter>

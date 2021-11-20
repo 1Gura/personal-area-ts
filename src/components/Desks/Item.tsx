@@ -1,22 +1,21 @@
 import React, {FC, useState} from 'react';
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import {desksUrl} from "../../url-constants";
 import {NavLink} from "react-router-dom";
 import {Desk} from "../interfaces/Desk";
 
-const Item: FC<Desk> = ({config, getDesks, desk, key, deleteDesk}) => {
+const Item: FC<Desk> = ({config, getDesks, desk, deleteDesk}) => {
   const {id, name} = desk;
   const [edit, setEdit] = useState(false);
   const [value, setValue] = useState(name);
-  const changeName = (id:number) => {
+  const changeName = (): void => {
     setEdit(!edit);
   }
 
-  const submit = (e:any) => {
-    debugger
+  const submit = (e: any) => {
     e.preventDefault();
     const path = `${desksUrl}/${id}`;
-    axios.post(path, {_method: 'PATCH', name: value}, config).then((response) => {
+    axios.post(path, {_method: 'PATCH', name: value}, config).then(() => {
       setEdit(false);
       getDesks();
     }).catch(error => {
@@ -47,7 +46,7 @@ const Item: FC<Desk> = ({config, getDesks, desk, key, deleteDesk}) => {
           }}>Удалить
           </button>
           <button onClick={() => {
-            changeName(id)
+            changeName()
           }}>{edit ? 'Отмена' : 'Редактировать'}
           </button>
           <NavLink to={`/desks/${id}`}>Показать</NavLink>

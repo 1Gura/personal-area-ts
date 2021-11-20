@@ -6,17 +6,11 @@ import ModalWindow from "../ModalWindow";
 import {useParams} from "react-router-dom";
 import {BaseInterface} from "../interfaces/base-interface";
 import {DeskModel} from "../models/desk-model";
+import {Desk} from "../interfaces/Desk";
 
 
 const Desks: FC<BaseInterface> = ({config}) => {
   const params = useParams();
-  useEffect(() => {
-    if (params.id) {
-      setShowModal(true);
-    } else {
-      setShowModal(false);
-    }
-  }, [params]);
   let [desks, setDesks] = useState<DeskModel[]>([]);
   const [modalDesk, setModalDesk] = useState({});
   let [name, setName] = useState('');
@@ -24,7 +18,7 @@ const Desks: FC<BaseInterface> = ({config}) => {
 
   const getDesks = async (): Promise<void> => {
     axios.get(desksUrl, config).then((res: AxiosResponse<DeskModel[]>) => {
-      return setDesks(res.data);
+      setDesks(res.data);
     }).catch(e => {
       console.log(e.response.status);
     })
@@ -54,6 +48,15 @@ const Desks: FC<BaseInterface> = ({config}) => {
     })
   }
 
+  useEffect(() => {
+    // getDesks();
+    if (params.id) {
+      setShowModal(true);
+    } else {
+      setShowModal(false);
+    }
+  }, []);
+
   return (
       <div className='desks-container'>
         <div className="desks-container__desks">
@@ -61,10 +64,10 @@ const Desks: FC<BaseInterface> = ({config}) => {
           <button onClick={getDesks}>Получить...</button>
           <ul>
             {
-              desks.map((item, index) => (
-                  <Item config={config} getDesks={getDesks} desk={item} key={index}
+              desks.map((item: DeskModel) =>
+                  <Item config={config} key={item.id} getDesks={getDesks} desk={item}
                         deleteDesk={deleteDesk}/>
-              ))
+              )
             }
           </ul>
         </div>

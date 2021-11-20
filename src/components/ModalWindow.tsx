@@ -1,17 +1,19 @@
 import React, {ChangeEvent, FC, InputHTMLAttributes, useEffect, useState} from 'react';
 import {NavLink, useParams} from "react-router-dom";
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import {desksUrl} from "../url-constants";
 import {BaseInterface} from "./interfaces/base-interface";
+import {DeskModel} from "./models/desk-model";
+import {Desk} from "./interfaces/Desk";
 
 
 const ModalWindow: FC<BaseInterface> = ({config}) => {
-  const [desk, setDesk] = useState();
-  const [valueName, setValueName] = useState();
+  const [desk, setDesk] = useState<DeskModel>();
+  const [valueName, setValueName] = useState<string>();
   const params = useParams();
   const {id} = params;
   const getDesk = () => {
-    axios.get(`${desksUrl}/${id}`, config).then(result => {
+    axios.get(`${desksUrl}/${id}`, config).then((result:AxiosResponse<DeskModel>) => {
       setDesk(result.data);
       setValueName(result.data.name);
     }).catch(e => {
@@ -20,7 +22,7 @@ const ModalWindow: FC<BaseInterface> = ({config}) => {
   }
   useEffect(() => {
     getDesk();
-  }, [desk]);
+  }, []);
 
   return (
     <div className='container-modal'>
