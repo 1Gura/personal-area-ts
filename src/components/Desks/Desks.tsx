@@ -6,7 +6,6 @@ import ModalWindow from "../ModalWindow";
 import {useParams} from "react-router-dom";
 import {BaseInterface} from "../interfaces/base-interface";
 import {DeskModel} from "../models/desk-model";
-import {Desk} from "../interfaces/Desk";
 
 
 const Desks: FC<BaseInterface> = ({config}) => {
@@ -33,12 +32,6 @@ const Desks: FC<BaseInterface> = ({config}) => {
     });
   }
 
-  const showModalWindow = (deskId: number): void => {
-    const desk: any = desks.find((item: any) => item.id === deskId);
-    setModalDesk(desk);
-    setShowModal(true);
-  }
-
   const addDesk = async (event: any) => {
     event.preventDefault();
     axios.post(desksUrl, {name}, config).then((res: AxiosResponse<any>) => {
@@ -49,13 +42,13 @@ const Desks: FC<BaseInterface> = ({config}) => {
   }
 
   useEffect(() => {
-    // getDesks();
+    getDesks();
     if (params.id) {
       setShowModal(true);
     } else {
       setShowModal(false);
     }
-  }, []);
+  }, [params]);
 
   return (
       <div className='desks-container'>
