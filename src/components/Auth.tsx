@@ -1,15 +1,13 @@
-import React, {FC, useState} from 'react';
+import React, {FC, FormEvent, useState} from 'react';
 import Input from "./UI/Input";
 import Button from "./UI/Button";
 import axios from "axios";
 import {AuthInterface} from "./interfaces/auth-interface";
 import {Log} from "./interfaces/log";
 
-
-
 const Auth: FC<AuthInterface> = ({selectToken}) => {
   const [value, setValue] = useState<Log>({email: 'gura@gmail.com', password: 'ilya123'});
-  const sendData = async (e: any): Promise<void> => {
+  const sendData = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
     axios.post(`http://127.0.0.1:8000/api/auth/login`, {
       email: value.email,
@@ -25,7 +23,6 @@ const Auth: FC<AuthInterface> = ({selectToken}) => {
         <div>
           <Input
             value={value}
-            //@ts-ignore
             setValue={setValue}
             name='email'
             type="email"
@@ -34,7 +31,6 @@ const Auth: FC<AuthInterface> = ({selectToken}) => {
         <div>
           <Input
             value={value}
-              //@ts-ignore
             setValue={setValue}
             name='password'
             type="password"

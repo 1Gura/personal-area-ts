@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, FormEventHandler, useState} from 'react';
 import axios, {AxiosResponse} from "axios";
 import {desksUrl} from "../../url-constants";
 import {NavLink} from "react-router-dom";
@@ -12,7 +12,7 @@ const Item: FC<Desk> = ({config, getDesks, desk, deleteDesk}) => {
     setEdit(!edit);
   }
 
-  const submit = (e: any) => {
+  const submit = (e: React.FormEvent): void => {
     e.preventDefault();
     const path = `${desksUrl}/${id}`;
     axios.post(path, {_method: 'PATCH', name: value}, config).then(() => {
@@ -29,7 +29,7 @@ const Item: FC<Desk> = ({config, getDesks, desk, deleteDesk}) => {
           {
             edit
                 ?
-                <form onSubmit={e => {
+                <form onSubmit={(e: React.FormEvent) => {
                   submit(e)
                 }}>
                   <input value={value} onChange={event => {

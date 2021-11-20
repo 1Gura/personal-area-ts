@@ -42,7 +42,6 @@ function App() {
     ).catch(e => {
       if (e && e.response && e.response.status === 401) {
         setAuthorize(false);
-        localStorage.clear();
       }
     })
   }

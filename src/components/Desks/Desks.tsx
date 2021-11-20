@@ -6,6 +6,7 @@ import ModalWindow from "../ModalWindow";
 import {useParams} from "react-router-dom";
 import {BaseInterface} from "../interfaces/base-interface";
 import {DeskModel} from "../models/desk-model";
+import List from "../List";
 
 
 const Desks: FC<BaseInterface> = ({config}) => {
@@ -56,12 +57,14 @@ const Desks: FC<BaseInterface> = ({config}) => {
           <h1>DESKS</h1>
           <button onClick={getDesks}>Получить...</button>
           <ul>
-            {
-              desks.map((item: DeskModel) =>
-                  <Item config={config} key={item.id} getDesks={getDesks} desk={item}
-                        deleteDesk={deleteDesk}/>
-              )
-            }
+            <List items={desks}
+                  renderItem={(desk: DeskModel) =>
+                      (<Item config={config}
+                             key={desk.id}
+                             getDesks={getDesks}
+                             desk={desk}
+                             deleteDesk={deleteDesk}/>)}/>
+
           </ul>
         </div>
         <div className="desks-container__form">
