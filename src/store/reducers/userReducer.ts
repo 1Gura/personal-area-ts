@@ -1,5 +1,5 @@
 import {TypeEnum} from "../../type-enum";
-import {UserAction, UserState} from "../../interfaces/UserAction";
+import {UserAction, UserState} from "../../types/UserAction";
 
 const initialState: UserState = {
   users: [],

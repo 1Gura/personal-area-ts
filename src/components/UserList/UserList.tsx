@@ -1,7 +1,6 @@
 import React, {FC, useEffect} from 'react';
 import {BaseInterface} from "../../interfaces/base-interface";
 import {useTypeSelector} from "../../hooks/useTypeSelector";
-import {useDispatch} from "react-redux";
 import {fetchUsers} from "../../store/action/user";
 import List from "../List";
 import UserItem from "./UserItem";

@@ -1,6 +1,6 @@
 import {TypeEnum} from "../../type-enum";
 import {Dispatch} from "redux";
-import {UserAction} from "../../interfaces/UserAction";
+import {UserAction} from "../../types/UserAction";
 import axios, {AxiosRequestConfig} from "axios";
 
 export const fetchUsers = (config: AxiosRequestConfig<any> | undefined) => {

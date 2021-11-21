@@ -20,7 +20,11 @@ const Desks: FC<BaseInterface> = ({config}) => {
     axios.get(desksUrl, config).then((res: AxiosResponse<DeskModel[]>) => {
       setDesks(res.data);
     }).catch(e => {
-      console.log(e.response.status);
+      if (e && e.response && e.response.status) {
+        console.error(e.response.status);
+      } else {
+        console.error('Ошибка получения списка досок');
+      }
     })
   }
 
@@ -43,27 +47,28 @@ const Desks: FC<BaseInterface> = ({config}) => {
   }
 
   useEffect(() => {
-    getDesks();
+    // getDesks();
     if (params.id) {
       setShowModal(true);
     } else {
       setShowModal(false);
     }
   }, [params]);
-
   return (
       <div className='desks-container'>
         <div className="desks-container__desks">
           <h1>DESKS</h1>
           <button onClick={getDesks}>Получить...</button>
           <ul>
-            <List items={desks}
-                  renderItem={(desk: DeskModel) =>
-                      (<Item config={config}
-                             key={desk.id}
-                             getDesks={getDesks}
-                             desk={desk}
-                             deleteDesk={deleteDesk}/>)}/>
+            {
+              desks ? <List items={desks}
+                            renderItem={(desk: DeskModel) =>
+                                (<Item config={config}
+                                       key={desk.id}
+                                       getDesks={getDesks}
+                                       desk={desk}
+                                       deleteDesk={deleteDesk}/>)}/> : ''}
+
 
           </ul>
         </div>

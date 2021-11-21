@@ -1,9 +1,8 @@
 import {TypeEnum} from "../type-enum";
+import {BaseType} from "./baseType";
 
-export interface UserState {
+export interface UserState extends BaseType{
   users: any[];
-  loading: boolean;
-  error: string | null;
 }
 
 export interface FETCH_USER_ACTION {
